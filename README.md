@@ -30,3 +30,17 @@ This project simulates sending between 1 and 100,000 requests in parallel to an 
    ```bash
    git clone https://github.com/sahuri/ThreadTest.git
    cd ThreadTest
+
+2. *Update the API endpoint*
+   
+   Edit TestService.java and update this line to point to your desired API:
+   ```java
+   private final String apiUrl = "http://localhost:8000/task/submit";
+
+3. *Adjust the number of requests*
+   
+   Edit the determineRequestCount() method in TestService.java to control the request load:
+   ```java
+   private int determineRequestCount() {
+    return 1000; // Change this number as needed
+   }
