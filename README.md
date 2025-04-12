@@ -1,4 +1,4 @@
-# ThreadTest
+# Multithreading Technique
 
 A Java-based demo project for handling high-concurrency external API requests using multithreading techniques such as ExecutorService, ForkJoinPool, and CountDownLatch.
 
