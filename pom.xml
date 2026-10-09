@@ -8,24 +8,12 @@
         <version>3.3.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>ThreadTest</artifactId>
+    <groupId>com.sahuri</groupId>
+    <artifactId>multithreading-technique</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>Demo project for Spring Boot</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+    <name>multithreading-technique</name>
+    <description>Mengirim banyak request ke API eksternal secara paralel
+        (ExecutorService, ForkJoinPool, CountDownLatch) dengan Spring Boot</description>
     <properties>
         <java.version>20</java.version>
     </properties>
