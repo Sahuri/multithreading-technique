@@ -1,0 +1,21 @@
+# Hasil build Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Eclipse / VS Code
+.classpath
+.project
+.settings/
+.vscode/
+
+# Berkas sistem
+.DS_Store
+Thumbs.db
+
+# Log
+*.log
