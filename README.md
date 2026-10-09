@@ -10,13 +10,14 @@ This project simulates sending between 1 and 100,000 requests in parallel to an 
 - Uses ExecutorService with dynamic thread pool sizing
 - Automatically switches to ForkJoinPool.commonPool() for heavy loads (above 10,000 requests)
 - Uses CountDownLatch to synchronize request completion
-- Avoids overlapping scheduled executions using isRunning flag
-- Uses Spring’s RestTemplate for external API invocation
-- Logs all responses and errors per request
+- Avoids overlapping scheduled executions using an AtomicBoolean guard
+- Uses Spring’s RestTemplate for external API invocation (provided as a bean)
+- Logs each response at DEBUG, the first 5 errors at WARN, and a failure count in the summary
+- Target API and request load come from application.properties
 
 ## Technologies
 
-- Java 17+
+- Java 20+
 - Spring Boot
 - Scheduled Tasks (@Scheduled)
 - ExecutorService, ForkJoinPool
@@ -28,19 +29,25 @@ This project simulates sending between 1 and 100,000 requests in parallel to an 
 
 1. *Clone the repository*
    ```bash
-   git clone https://github.com/sahuri/ThreadTest.git
-   cd ThreadTest
+   git clone https://github.com/sahuri/multithreading-technique.git
+   cd multithreading-technique
 
-2. *Update the API endpoint*
-   
-   Edit TestService.java and update this line to point to your desired API:
-   ```java
-   private final String apiUrl = "http://localhost:8000/task/submit";
+2. *Configure the target API and the number of requests*
 
-3. *Adjust the number of requests*
-   
-   Edit the determineRequestCount() method in TestService.java to control the request load:
-   ```java
-   private int determineRequestCount() {
-    return 1000; // Change this number as needed
-   }
+   Both live in `src/main/resources/application.properties` — no code change needed:
+
+   ```properties
+   threadtest.api-url=http://localhost:8000/task/submit
+   threadtest.jumlah-request=1000
+   ```
+
+   Loads used for testing: 1, 5, 40, 150, 1000, 3000, 10000, 100000.
+
+3. *Run*
+
+   ```bash
+   mvn spring-boot:run
+   ```
+
+   The job runs **once** by default. To let it repeat on every schedule tick, set
+   `ULANG_TERUS_MENERUS = true` in `TestService`.
